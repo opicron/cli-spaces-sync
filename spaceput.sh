@@ -22,7 +22,10 @@ done
 
 #get list of files to purge from cache
 
-for f in $(find /var/www/html/wp-content/uploads/ -type f \( -iname \*.jpg -o -iname \*.png \) -printf "%P\n" );
+for f in $(find /var/www/html/wp-content/uploads/ -type f \( -iname \*.jpg -o -iname \*.png \) \
+   -not \( -path */fly-images/* -prune \) \
+   -not \( -path */csprite/* -prune \) \
+   -printf "%P\n" );
 do
 	#case png
 	if [[ $f == *".png" ]]; then
