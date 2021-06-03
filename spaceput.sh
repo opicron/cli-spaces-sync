@@ -81,7 +81,9 @@ if [ "${DRYRUN}" -eq 1 ]; then
 	ARGUMENTS+="--dry-run"
 fi
 for f in "${purge[@]}"; do
+
 	s3cmd put /var/www/html/wp-content/uploads/$f s3://<<BUCKET_NAME>>/$f ${ARGUMENTS} --acl-public
+
 done
 
 
