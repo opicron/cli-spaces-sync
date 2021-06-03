@@ -84,6 +84,12 @@ for f in "${purge[@]}"; do
 
 	s3cmd put /var/www/html/wp-content/uploads/$f s3://BUCKET/$f ${ARGUMENTS} --acl-public
 
+	retval=$?
+	
+	if [ $retval -ne 0 ]; then
+		echo "error occured halting.."
+		exit 1
+	fi
 done
 
 
